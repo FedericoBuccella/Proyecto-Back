@@ -1,14 +1,26 @@
 [
 	{
-		"price": "2",
-		"timestamp": 1657244805750,
-		"stock": "2",
+		"price": "1",
+		"descripcion": "1",
+		"timestamp": 1657330471016,
 		"id": 1
 	},
 	{
 		"price": "2",
-		"timestamp": 1657244807125,
-		"stock": "2",
+		"descripcion": "2",
+		"timestamp": 1657330480794,
 		"id": 2
+	},
+	{
+		"price": "3",
+		"descripcion": "3",
+		"timestamp": 1657330485193,
+		"id": 3
+	},
+	{
+		"price": "4",
+		"descripcion": "4",
+		"timestamp": 1657330489056,
+		"id": 4
 	}
 ]

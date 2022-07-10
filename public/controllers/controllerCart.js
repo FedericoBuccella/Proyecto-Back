@@ -23,7 +23,7 @@ const verCarrito = async (req, res) => {
     res.json(elemento)
 }
 
-const deleteCarrito = async (req, res) => {
+const borrarCarrito = async (req, res) => {
     const id = Number(req.params.id)
     const elemento = await cart.getCartById(id)
     if(!elemento.length){
@@ -36,7 +36,7 @@ const deleteCarrito = async (req, res) => {
     res.json(await cart.getAllCarts())
 }
 
-const deleteProductoCarrito = async (req, res)=>{
+const borrarProductoCarrito = async (req, res)=>{
     const id = Number(req.params.id)
     const id_prod= Number(req.params.id_prod)
     const productdelete= await prodNuevo.getById(id_prod)
@@ -49,24 +49,31 @@ const deleteProductoCarrito = async (req, res)=>{
     res.json(await cart.deleteProductofCartById(id, id_prod))  
 }
 
-const insertProductoByIdToCart = async (req,res)=>{
+const insertarProductoIdCart = async (req, res)=>{
     const id_cart=Number(req.params.id)
     const id_prod= Number(req.body.id)
     const elemento =  await cart.getCartById(id_cart)
-    if(!elemento.length){return res.status(404).json({error: "Carrito no encontrado"})}
+    if(!elemento.length){
+        return res.status(404).json({error: "Carrito no encontrado"})
+    }
     
-    const productInsert= prodNuevo.getById(id_prod)
+    const productInsert = prodNuevo.getById(id_prod)
+    console.log(prodNuevo)
     const item= await productInsert 
-    if(!isNumber(id_cart)){return res.json({ error: "El parámetro no es un número o el id no existe" })}
-    if(!isNumber(id_prod)|| productInsert.length==0){return res.json({ error: "El producto no existe" })}
-    res.json( await cart.insertProductById(id_cart,item))
+    if(!isNumber(id_cart)){
+        return res.json({ error: "El parámetro no es un número o el id no existe" })
+    }
+    if(!isNumber(id_prod)|| productInsert.length==0){
+        return res.json({ error: "El producto no existe" })
+    }
+    res.json( await cart.insertProductById(id_cart, item))
 }
 
 
 module.exports = {
     postCarrito,
     verCarrito,
-    insertProductoByIdToCart,
-    deleteCarrito,
-    deleteProductoCarrito
+    insertarProductoIdCart,
+    borrarCarrito,
+    borrarProductoCarrito
     }
